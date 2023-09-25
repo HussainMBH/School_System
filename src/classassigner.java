@@ -20,5 +20,32 @@ public class classassigner {
     //Map Created for teacher Id and teacher connected if click cancel remove teacher
     static Map<Integer, Teacher> Teachers = new HashMap<>();
 
+    //assign class
+    public void assignclass(Teacher t, int classInfo, String allotedclass){
+        //assign the class number and type of class(A,B,C)
+        t.number = classInfo;
+        t.alloted = allotedclass;
+        //add teacher to the map
+        Teachers.put(t.teacherId, t);
+        //add Teacher id to the list of assigned class
+        assignedclassList.add(t.teacherId);
+        System.out.println("Class Assigned Successfully.");
+    }
+
+    public void addTowait(Teacher t, int waitingListInfo, String allotedWL){
+        //assign class number and type(WL)
+        t.number = waitingListInfo;
+        t.alloted = allotedWL;
+        //add teacher id to the queue of WL class
+        waitingclass.add(t.teacherId);
+        //decrease available WL class by 1
+        availableWclass--;
+        //remove the position that was alloted to the passenger
+        WclassPosition.remove(0);
+        System.out.println("Assigned to Waiting list Successfully");
+    }
+
+
+
 
 }

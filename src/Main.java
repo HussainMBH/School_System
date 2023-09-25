@@ -10,7 +10,65 @@ public class Main {
             return;
         }
         //check if preferred class is available
+        if ((t.classpreference.equals("A") && classassigner.availableAclass > 0)||
+        (t.classpreference.equals("B") && classassigner.availableBclass > 0)||
+                (t.classpreference.equals("C") && classassigner.availableCclass > 0)){
+            System.out.println("Preferred Class Available");
+            if(t.classpreference.equals("A")){
+                System.out.println("A Class Assigned");
+                //call assigning function in the classassigner class
+                assigner.assignclass(t, (classassigner.AclassPosition.get(0)),"A");
+                //remove the assigned position from available position and also decrease available class of that
+                //particular type
+                classassigner.AclassPosition.remove(0);
+                classassigner.availableAclass --;
+            }
+            else if(t.classpreference.equals("B")){
+                System.out.println("B Class Given");
+                //call assigning function in the classassigner class
+                assigner.assignclass(t,(classassigner.BclassPosition.get(0)), "B");
+                classassigner.BclassPosition.remove(0);
+                classassigner.availableBclass --;
+            } else if (t.classpreference.equals("C")) {
+                System.out.println("C Class Given");
+                //call assigning function in the classassigner class
+                assigner.assignclass(t,(classassigner.CclassPosition.get(0)), "C");
+                classassigner.CclassPosition.remove(0);
+                classassigner.availableCclass --;
+
+            }
+        } else if (classassigner.availableAclass > 0) {
+            System.out.println("A Class Given");
+            //call assigning function in the Classassigner class
+            assigner.assignclass(t, (classassigner.AclassPosition.get(0)),"A");
+            //remove the assigned position from available positions and also decrease available seat of that
+            classassigner.AclassPosition.remove(0);
+            classassigner.availableAclass--;
+
+        } else if (classassigner.availableBclass > 0) {
+            System.out.println(" Class Given");
+            //call assigning function in the Classassigner class
+            assigner.assignclass(t, (classassigner.BclassPosition.get(0)),"B");
+            //remove the assigned position from available positions and also decrease available seat of that
+            classassigner.BclassPosition.remove(0);
+            classassigner.availableBclass--;
+        } else if (classassigner.availableCclass > 0) {
+            System.out.println("C Class Given");
+            //call assigning function in the Classassigner class
+            assigner.assignclass(t, (classassigner.CclassPosition.get(0)),"C");
+            //remove the assigned position from available positions and also decrease available seat of that
+            classassigner.CclassPosition.remove(0);
+            classassigner.availableCclass--;
+           }
+        //if no class available go to waiting class
+        else if (classassigner.availableWclass > 0) {
+            System.out.println("Waiting class is here");
+            assigner.addTowait(t, (classassigner.WclassPosition.get(0)), "WL");
+            }
+
     }
+    //cancel class function
+
 
 
 
@@ -36,6 +94,15 @@ public class Main {
                     //assigning
                     assignclass(t);
                 }
+                break;
+                //Cancel
+                case 2:{
+                    //get Teacher id to cancel
+                    System.out.println("Enter Teacher Id to Cancel");
+                    int id = s.nextInt();
+                    //cancelClass(id);
+                }
+                break;
             }
         }
     }
